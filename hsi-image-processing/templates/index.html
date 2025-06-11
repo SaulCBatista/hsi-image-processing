@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Processador de Imagens HSI</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<header>
+    <h1>Upload de Imagem e Operações no Canal de Intensidade (I)</h1>
+</header>
+
+<body>
+    <main>
+        <div class="container">
+            <h1>Editor HSI de Imagens</h1>
+            <form id="form" method="POST" enctype="multipart/form-data">
+                <input type="file" name="image" required>
+
+                <label>Operação:</label>
+                <select name="operation">
+                    <option value="brilho_mais">Aumentar Brilho</option>
+                    <option value="brilho_menos">Diminuir Brilho</option>
+                    <option value="contraste">Realçar Contraste</option>
+                    <option value="equalizar">Equalização Histograma</option>
+                </select>
+
+                <label>Fator (opcional):</label>
+                <input type="text" name="factor" value="0.2">
+
+                <button type="submit">Processar</button>
+            </form>
+
+            <div id="output" style="display: none;">
+                <h2>Comparação:</h2>
+                <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+                    <div>
+                        <h3>Original</h3>
+                        <img id="original" src="">
+                    </div>
+                    <div>
+                        <h3>Processada</h3>
+                        <img id="processed" src="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        const form = document.getElementById("form");
+        form.onsubmit = async (e) => {
+            e.preventDefault();
+            const data = new FormData(form);
+            const response = await fetch("/upload", {
+                method: "POST",
+                body: data
+            });
+
+            const result = await response.json();
+
+            // Adiciona um timestamp único para forçar reload
+            const timestamp = new Date().getTime();
+
+            document.getElementById("original").src = result.original + "?t=" + timestamp;
+            document.getElementById("processed").src = result.processed + "?t=" + timestamp;
+
+            document.getElementById("output").style.display = "block";
+        }
+
+    </script>
+</body>
+
+</html>

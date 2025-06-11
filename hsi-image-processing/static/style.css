@@ -1,0 +1,109 @@
+@charset "UTF-8";
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root {
+    --cor0: #d0dcf5;
+    --cor1: #0d50df;
+    --cor2: #02153f;
+    --cor3: #7d11e2;
+
+    --fonte-padrao: "Montserrat", sans-serif;
+    --fonte-destaque: 'Bebas Neue', cursive;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-image: linear-gradient(to bottom, var(--cor1), var(--cor2));
+    background-color: var(--cor3);
+    min-height: 200px;
+    text-align: center;
+}
+
+header>h1 {
+    color: #ffffff;
+    font-size: 3em;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 0 #00000044;
+}
+
+body {
+    background-color: var(--cor0);
+    font-family: var(--fonte-padrao);
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 20vh;
+    min-width: 600px;
+    padding-bottom: 60px;
+}
+
+.container {
+    background-color: white;
+    padding: 30px 40px;
+    margin-top: 50px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 600px;
+    min-width: 200px;
+}
+
+.container>h1 {
+    text-align: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+input[type="file"],
+select,
+input[type="text"],
+button {
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    outline: none;
+}
+
+input[type="file"] {
+    background-color: #fafafa;
+}
+
+button {
+    background-color: var(--cor1);
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background-color: var(--cor2);
+}
+
+#output {
+    margin-top: 30px;
+    text-align: center;
+}
+
+#original,
+#processed {
+    max-width: 100%;
+    border-radius: 8px;
+    margin-top: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
